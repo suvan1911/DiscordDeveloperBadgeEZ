@@ -4,7 +4,7 @@ import time
 
 import app
 import guild
-# import dbot
+import dbot
 
 with open('config.json','r') as f:
     config = json.load(f)
@@ -29,6 +29,9 @@ time.sleep(2)
 
 webbrowser.open(f"https://discord.com/api/oauth2/authorize?client_id={APP_ID}&permissions=2048&scope=bot") 
 # add bot to guild, requires captcha 
+time.sleep(5)
+dbot.initialise_bot(GUILD_ID,BOT_TOKEN)
+
 
 
 

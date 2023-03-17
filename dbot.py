@@ -1,12 +1,14 @@
-import discord
-from discord.ext import commands
+from discord.ext import commands #py-cord
 
-bot = commands.Bot()
+def initialise_bot(guild_id,token):
+    bot = commands.Bot()
 
-@bot.slash_command(name="first_slash", guild_ids=[1052620492969889812])
-async def first_slash(ctx): 
-    await ctx.respond("You executed the slash command!")
+    @bot.slash_command(name="first_slash", guild_ids=[guild_id])
+    async def first_slash(ctx): 
+        await ctx.respond("You executed the slash command!")
 
-def run_bot(token):
+    @bot.event
+    async def on_ready():
+        print('Ready!')
+
     bot.run(token)
-
