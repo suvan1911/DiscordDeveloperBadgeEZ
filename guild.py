@@ -30,7 +30,7 @@ def enable_community(token,guild_id):
     }
 
     requests.patch(
-        'https://discord.com/api/v9/guilds/1052620492969889812',
+        f'https://discord.com/api/v9/guilds/{guild_id}',
         headers={'authorization': token,},
         json=json_data
         )
