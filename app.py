@@ -3,7 +3,7 @@ import requests
 def create_app(token):
     
     json_data = {
-    'name': 'NewApp',
+    'name': 'DevBadge by svn#9034',
     'team_id': None,
     }
 
@@ -12,6 +12,14 @@ def create_app(token):
         headers={'authorization': token},
         json=json_data
         )
-    
-    APP_ID = response.json()["id"]
-    return APP_ID
+    return response.json()["id"] #application id
+
+def create_bot(token,app_id):
+
+    response = requests.post(
+        f'https://discord.com/api/v9/applications/{app_id}/bot',
+        headers={'authorization': token},
+        )
+    return response.json()["token"] #bot token
+
+

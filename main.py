@@ -1,36 +1,38 @@
-import requests
 import json
+import webbrowser
+import time 
+
 import app
+import guild
+# import dbot
 
 with open('config.json','r') as f:
     config = json.load(f)
 
 USER_TOKEN = config.get('TOKEN')
 
-headers = {
-    'authorization': USER_TOKEN,
-}
-
-
 APP_ID = app.create_app(USER_TOKEN)
+print("APP CREATED")
+time.sleep(2)
 
-response = requests.post(f'https://discord.com/api/v9/applications/{APP_ID}/bot', headers=headers)
+BOT_TOKEN = app.create_bot(USER_TOKEN,APP_ID)
+print("BOT CREATED")
+time.sleep(2)
 
-BOT_TOKEN = response.json()["token"]
-print(BOT_TOKEN)
+GUILD_ID = guild.create_guild(USER_TOKEN)
+print("GUILD CREATED")
+time.sleep(2)
 
-json_data = {
-    'features': [
-        'COMMUNITY',
-    ],
-    'verification_level': 1,
-    'default_message_notifications': 1,
-    'explicit_content_filter': 2,
-    'rules_channel_id': '1',
-    'public_updates_channel_id': '1',
-}
+guild.enable_community(USER_TOKEN,GUILD_ID)
+print("COMMUNITY ENABLED")
+time.sleep(2)
 
-response = requests.patch('https://discord.com/api/v9/guilds/1052620492969889812', headers=headers, json=json_data)
+webbrowser.open(f"https://discord.com/api/oauth2/authorize?client_id={APP_ID}&permissions=2048&scope=bot") 
+# add bot to guild, requires captcha 
+
+
+
+
 
 
 
