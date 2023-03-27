@@ -1,5 +1,6 @@
 from colorama import Fore, Style, init
-from discord.ext import commands, Embed #py-cord
+from discord.ext import commands #py-cord
+from discord import Embed 
 import requests
 import json
 import webbrowser
