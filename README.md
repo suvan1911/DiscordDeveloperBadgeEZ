@@ -1,1 +1,1 @@
-# DiscordDeveloperBadge
+# DiscordDeveloperBadgeEZ
