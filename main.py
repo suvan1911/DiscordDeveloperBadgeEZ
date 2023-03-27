@@ -1,6 +1,6 @@
 from colorama import Fore, Style, init
 from discord.ext import commands #py-cord
-from discord import Embed
+from discord import Embed 
 import requests
 import json
 import webbrowser
@@ -123,7 +123,9 @@ if __name__ == "__main__":
         config = json.load(f)
 
     USER_TOKEN = config.get('TOKEN')
-
+    if len(USER_TOKEN.split('.')) != 3: #goofy ahh token check 
+        print(f"{err()} Invalid token entered in config.json")
+        ext()
     APP_ID = create_app(USER_TOKEN)
     time.sleep(2)
 
